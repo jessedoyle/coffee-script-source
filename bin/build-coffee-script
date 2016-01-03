@@ -1,0 +1,53 @@
+#!/usr/bin/env bash
+
+set -e
+set -x
+
+VERSION="$1"
+CURRENT=`pwd`
+
+mkdir -p tmp/
+pushd tmp/
+
+if [ ! -d "coffeescript/" ]; then
+  git clone "https://github.com/jashkenas/coffeescript"
+fi
+
+pushd coffeescript
+
+git checkout "$VERSION"
+
+npm install
+
+MINIFY=false cake build:browser
+
+cd $CURRENT
+mkdir -p src/js/
+
+mv tmp/coffeescript/extras/coffee-script.js src/js/coffee-script.js
+
+cat << CRYSTAL > src/coffee_script_source.cr
+module CoffeeScript
+  module Source
+    def self.bundled_path
+      File.expand_path("../js/coffee-script.js", __FILE__)
+    end
+  end
+end
+CRYSTAL
+
+cat << CRYSTAL > src/coffee-script-source.cr
+require "./coffee_script_source"
+CRYSTAL
+
+cat << SHARD > shard.yml
+name: coffee-script-source
+version: $VERSION
+
+authors:
+  - Jesse Doyle <jdoyle@ualberta.ca>
+
+license: MIT
+SHARD
+
+rm -rf tmp/

@@ -14,7 +14,7 @@ In your `shard.yml`:
 dependencies:
   coffee-script-source:
     github: jessedoyle/coffee-script-source
-    version: ~> 1.10.0
+    version: ~> 1.11.1
 ```
 
 the execute `shards install`.

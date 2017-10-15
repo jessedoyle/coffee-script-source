@@ -14,7 +14,7 @@ In your `shard.yml`:
 dependencies:
   coffee-script-source:
     github: jessedoyle/coffee-script-source
-    version: ~> 1.11.1
+    version: ~> 1.12.6
 ```
 
 the execute `shards install`.
@@ -33,7 +33,7 @@ Maintenance
 
 For future reference, when a new CoffeeScript version is released:
 
-1. Create a new branch on this repo, then checout the created branch.
+1. Create a new branch on this repo, then checkout the created branch.
 2. From the repo's root directory execute: `bin/build-coffee-script 1.x.x`.
 3. Commit and merge as usual. Don't forget to add the correct release tags (eg. `v1.10.0`).
 

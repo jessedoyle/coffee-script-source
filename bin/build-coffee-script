@@ -19,12 +19,12 @@ git checkout "$VERSION"
 
 npm install
 
-MINIFY=false cake build:browser
+MINIFY=false npx cake build:browser
 
 cd $CURRENT
 mkdir -p src/js/
 
-mv tmp/coffeescript/docs/v1/browser-compiler/coffee-script.js src/js/coffee-script.js
+mv tmp/coffeescript/docs/v2/browser-compiler-legacy/coffeescript.js src/js/coffee-script.js
 
 cat << CRYSTAL > src/coffee_script_source.cr
 module CoffeeScript

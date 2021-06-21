@@ -1,7 +1,8 @@
 name: coffee-script-source
-version: 1.12.6
+version: 2.0.0
 
 authors:
   - Jesse Doyle <jdoyle@ualberta.ca>
 
+crystal: '>= 0.35.1'
 license: MIT
